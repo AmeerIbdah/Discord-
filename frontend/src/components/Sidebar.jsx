@@ -18,14 +18,12 @@ const capitalize = (word) => {
   return word.charAt(0).toUpperCase() + word.slice(1);
 };
 
-function Sidebar({ selectedChannel, setSelectedChannel, onLogout }) {
+function Sidebar({ selectedChannel, setSelectedChannel, onLogout, user }) {
   return (
     <aside className="sidebar">
       <div>
         <div className="brand">
-          <div className="brand-logo">
-           <img src="/discord-logo.svg" alt="Logo" />
-          </div>
+          <div className="brand-logo">D</div>
 
           <div>
             <h2>Discord Clone</h2>
@@ -57,10 +55,24 @@ function Sidebar({ selectedChannel, setSelectedChannel, onLogout }) {
         </div>
       </div>
 
-      <div className="sidebar-footer">
-        <button className="logout-btn" onClick={onLogout}>
-          Logout
-        </button>
+      <div className="sidebar-bottom">
+        <div className="user-card">
+          <div className="user-avatar">
+            {user?.username?.charAt(0).toUpperCase()}
+            <span className="online-dot"></span>
+          </div>
+
+          <div className="user-info">
+            <strong>{user?.username}</strong>
+            <span>Online</span>
+          </div>
+        </div>
+
+        <div className="sidebar-footer">
+          <button className="logout-btn" onClick={onLogout}>
+            Logout
+          </button>
+        </div>
       </div>
     </aside>
   );

@@ -1,0 +1,62 @@
+/* ================= MESSAGES ================= */
+
+.messages-box {
+  flex: 1;
+  padding: 28px;
+  overflow-y: auto;
+}
+
+.messages-box::-webkit-scrollbar {
+  width: 8px;
+}
+
+.messages-box::-webkit-scrollbar-thumb {
+  background: rgba(103, 232, 249, 0.25);
+  border-radius: 20px;
+}
+
+.empty-message {
+  margin-top: 80px;
+  text-align: center;
+  color: #94a3b8;
+  font-size: 18px;
+}
+
+.message {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 20px;
+  padding: 14px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: 0.2s;
+}
+
+.message:hover {
+  background: rgba(255, 255, 255, 0.075);
+  transform: translateY(-1px);
+}
+
+.avatar {
+  min-width: 44px;
+  height: 44px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #7c3aed, #06b6d4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  box-shadow: 0 0 25px rgba(6, 182, 212, 0.25);
+}
+
+.message strong {
+  color: #ffffff;
+  font-size: 15px;
+}
+
+.message p {
+  margin-top: 5px;
+  color: #dbeafe;
+  line-height: 1.5;
+}

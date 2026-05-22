@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import api from "../../services/api";
-import socket from "../../services/socket";
+import api from "../services/api";
+import socket from "../services/socket";
 import Sidebar from "../components/Sidebar";
 import MessageBox from "../components/MessageBox";
 
@@ -79,10 +79,11 @@ function Chat() {
   return (
     <div className="chat-page">
       <Sidebar
-        selectedChannel={selectedChannel}
-        setSelectedChannel={setSelectedChannel}
-        onLogout={logout}
-      />
+       selectedChannel={selectedChannel}
+       setSelectedChannel={setSelectedChannel}
+       onLogout={logout}
+       user={user}
+     />
 
       <main className="chat-area">
         <div className="chat-header">

@@ -1,0 +1,49 @@
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+  body {
+    overflow: auto;
+  }
+
+  .chat-page {
+    min-height: 100vh;
+    height: auto;
+    flex-direction: column;
+    padding: 12px;
+    gap: 14px;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+  }
+
+  .brand {
+    margin-bottom: 24px;
+  }
+
+  .channels {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+  }
+
+  .channel-item {
+    min-width: 190px;
+    margin-bottom: 0;
+  }
+
+  .sidebar-bottom {
+    margin-top: 16px;
+  }
+
+  .chat-area {
+    min-height: 70vh;
+  }
+
+  .auth-card {
+    width: 100%;
+    max-width: 420px;
+  }
+}

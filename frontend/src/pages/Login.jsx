@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import api from "../../services/api";
+import { HiOutlineEye, HiOutlineEyeSlash } from "react-icons/hi2";
+import api from "../services/api";
 
 function Login() {
   const navigate = useNavigate();
@@ -11,6 +12,7 @@ function Login() {
   });
 
   const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
@@ -37,8 +39,9 @@ function Login() {
     <div className="auth-page">
       <form className="auth-card" onSubmit={handleLogin}>
         <div className="auth-logo">
-     <img src="/discord-logo.svg" alt="Discord Clone Logo" />
-    </div>
+          <img src="/discord-logo.svg" alt="Discord Clone Logo" />
+        </div>
+
         <h1>Welcome Back</h1>
         <p>Login to continue chatting.</p>
 
@@ -52,15 +55,27 @@ function Login() {
           onChange={handleChange}
         />
 
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
-        />
+        <div className="password-field">
+          <input
+            type={showPassword ? "text" : "password"}
+            name="password"
+            placeholder="Password"
+            value={formData.password}
+            onChange={handleChange}
+          />
 
-        <button type="submit">Login</button>
+          <button
+            type="button"
+            className="password-toggle"
+            onClick={() => setShowPassword(!showPassword)}
+          >
+            {showPassword ? <HiOutlineEyeSlash /> : <HiOutlineEye />}
+          </button>
+        </div>
+
+        <button type="submit" className="login-btn">
+          Login
+        </button>
 
         <span>
           Don't have an account? <Link to="/register">Register</Link>
