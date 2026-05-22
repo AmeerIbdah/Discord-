@@ -81,18 +81,15 @@ function Chat() {
       <Sidebar
         selectedChannel={selectedChannel}
         setSelectedChannel={setSelectedChannel}
+        onLogout={logout}
       />
 
       <main className="chat-area">
         <div className="chat-header">
           <div>
-            <h2>#{selectedChannel}</h2>
+            <h2>{selectedChannel.charAt(0).toUpperCase() + selectedChannel.slice(1)}</h2>
             <p>Welcome, {user.username}</p>
           </div>
-
-          <button className="logout-btn" onClick={logout}>
-            Logout
-          </button>
         </div>
 
         <MessageBox messages={messages} isLoading={isLoading} />
@@ -100,7 +97,9 @@ function Chat() {
         <form className="message-form" onSubmit={sendMessage}>
           <input
             type="text"
-            placeholder={`Message #${selectedChannel}`}
+           placeholder={`Message ${
+           selectedChannel.charAt(0).toUpperCase() + selectedChannel.slice(1)
+           }`}
             value={text}
             onChange={(e) => setText(e.target.value)}
           />

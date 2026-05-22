@@ -36,6 +36,9 @@ function Login() {
   return (
     <div className="auth-page">
       <form className="auth-card" onSubmit={handleLogin}>
+        <div className="auth-logo">
+     <img src="/discord-logo.svg" alt="Discord Clone Logo" />
+    </div>
         <h1>Welcome Back</h1>
         <p>Login to continue chatting.</p>
 

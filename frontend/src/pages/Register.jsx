@@ -35,6 +35,9 @@ function Register() {
   return (
     <div className="auth-page">
       <form className="auth-card" onSubmit={handleRegister}>
+        <div className="auth-logo">
+         <img src="/discord-logo.svg" alt="Discord Clone Logo" />
+        </div>
         <h1>Create Account</h1>
         <p>Join the chat and start messaging.</p>
 
