@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import api from "../api";
-import socket from "../socket";
+import api from "../../services/api";
+import socket from "../../services/socket";
 import Sidebar from "../components/Sidebar";
 import MessageBox from "../components/MessageBox";
 
