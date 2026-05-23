@@ -7,23 +7,46 @@ import {
 } from "react-icons/hi2";
 
 const channels = [
-  { name: "general", icon: <HiOutlineChatBubbleLeftRight />, tag: "Main" },
-  { name: "study", icon: <HiOutlineAcademicCap />, tag: "Team" },
-  { name: "react", icon: <HiOutlineCodeBracket />, tag: "Code" },
-  { name: "gaming", icon: <HiOutlinePuzzlePiece />, tag: "Fun" },
-  { name: "random", icon: <HiOutlineSparkles />, tag: "Talk" },
+  {
+    name: "general",
+    label: "General",
+    icon: <HiOutlineChatBubbleLeftRight />,
+    tag: "Main",
+  },
+  {
+    name: "announcements",
+    label: "Announcements",
+    icon: <HiOutlineSparkles />,
+    tag: "News",
+  },
+  {
+    name: "study-room",
+    label: "Study Room",
+    icon: <HiOutlineAcademicCap />,
+    tag: "Study",
+  },
+  {
+    name: "code-lab",
+    label: "Code Lab",
+    icon: <HiOutlineCodeBracket />,
+    tag: "Code",
+  },
+  {
+    name: "random",
+    label: "Random",
+    icon: <HiOutlinePuzzlePiece />,
+    tag: "Talk",
+  },
 ];
-
-const capitalize = (word) => {
-  return word.charAt(0).toUpperCase() + word.slice(1);
-};
 
 function Sidebar({ selectedChannel, setSelectedChannel, onLogout, user }) {
   return (
     <aside className="sidebar">
       <div>
         <div className="brand">
-          <div className="brand-logo">D</div>
+          <div className="brand-logo">
+            <img src="/discord-logo.svg" alt="Discord Logo" />
+          </div>
 
           <div>
             <h2>Discord Clone</h2>
@@ -45,7 +68,7 @@ function Sidebar({ selectedChannel, setSelectedChannel, onLogout, user }) {
               <span className="channel-icon">{channel.icon}</span>
 
               <span className="channel-info">
-                <strong>{capitalize(channel.name)}</strong>
+                <strong>{channel.label}</strong>
                 <small>{channel.tag}</small>
               </span>
 

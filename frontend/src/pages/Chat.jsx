@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { HiOutlineLink } from "react-icons/hi2";
 import api from "../services/api";
 import socket from "../services/socket";
 import Sidebar from "../components/Sidebar";
@@ -7,12 +8,19 @@ import MessageBox from "../components/MessageBox";
 
 function Chat() {
   const navigate = useNavigate();
-
+  const fileInputRef = useRef(null);
   const [user] = useState(() => JSON.parse(localStorage.getItem("user")));
   const [selectedChannel, setSelectedChannel] = useState("general");
   const [messages, setMessages] = useState([]);
   const [text, setText] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+  const getChannelTitle = (channel) => {
+    return channel
+      .split("-")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  };
 
   useEffect(() => {
     if (!user) {
@@ -54,6 +62,22 @@ function Chat() {
     };
   }, [selectedChannel, user]);
 
+const handleFileChange = (e) => {
+  const file = e.target.files[0];
+
+  if (!file) return;
+
+  setText((prevText) => {
+    if (!prevText.trim()) {
+      return `📎 ${file.name}`;
+    }
+
+    return `${prevText} 📎 ${file.name}`;
+  });
+
+  e.target.value = "";
+};
+
   const sendMessage = (e) => {
     e.preventDefault();
 
@@ -79,16 +103,16 @@ function Chat() {
   return (
     <div className="chat-page">
       <Sidebar
-       selectedChannel={selectedChannel}
-       setSelectedChannel={setSelectedChannel}
-       onLogout={logout}
-       user={user}
-     />
+        selectedChannel={selectedChannel}
+        setSelectedChannel={setSelectedChannel}
+        onLogout={logout}
+        user={user}
+      />
 
       <main className="chat-area">
         <div className="chat-header">
           <div>
-            <h2>{selectedChannel.charAt(0).toUpperCase() + selectedChannel.slice(1)}</h2>
+            <h2>{getChannelTitle(selectedChannel)}</h2>
             <p>Welcome, {user.username}</p>
           </div>
         </div>
@@ -96,17 +120,36 @@ function Chat() {
         <MessageBox messages={messages} isLoading={isLoading} />
 
         <form className="message-form" onSubmit={sendMessage}>
-          <input
-            type="text"
-           placeholder={`Message ${
-           selectedChannel.charAt(0).toUpperCase() + selectedChannel.slice(1)
-           }`}
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-          />
+  <input
+    ref={fileInputRef}
+    className="hidden-file-input"
+    type="file"
+    accept="image/*,.pdf,.doc,.docx,.txt,.zip"
+    onChange={handleFileChange}
+  />
 
-          <button type="submit">Send</button>
-        </form>
+  <div className="message-input-box">
+    <input
+      type="text"
+      placeholder={`Message ${getChannelTitle(selectedChannel)}`}
+      value={text}
+      onChange={(e) => setText(e.target.value)}
+    />
+
+    <button
+      type="button"
+      className="link-btn"
+      title="Add file or image"
+      onClick={() => fileInputRef.current?.click()}
+    >
+      <HiOutlineLink />
+    </button>
+  </div>
+
+  <button type="submit" className="send-btn">
+    Send
+  </button>
+</form>
       </main>
     </div>
   );
