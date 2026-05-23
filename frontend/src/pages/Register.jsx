@@ -25,13 +25,16 @@ function Register() {
     setError("");
 
     try {
-      await api.post("/auth/register", formData);
-      navigate("/login");
+    const res = await api.post("/auth/register", formData);
+
+    localStorage.setItem("user", JSON.stringify(res.data.user));
+
+    navigate("/chat");
+    window.location.reload();
     } catch (err) {
       setError(err.response?.data?.message || "Register failed");
     }
   };
-
   return (
     <div className="auth-page">
       <form className="auth-card" onSubmit={handleRegister}>
